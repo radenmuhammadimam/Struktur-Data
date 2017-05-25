@@ -1,0 +1,85 @@
+#include "singlelist.h"
+
+address get_input()
+{
+    infotype x;
+    cout<< "Masukkan NIM : "; cin>> x.nim;
+    cout<< "Masukkan Nama : "; cin>> x.nama;
+    return alokasi(x);
+}
+
+void mainmenu(List L)
+{
+    address P,Q;
+    infotype dicari;
+    int pil;
+    do
+    {
+        cout << "MENU" << endl;
+        cout << "1.Insert First" << endl;
+        cout << "2.Insert Last" << endl;
+        cout << "3.Insert After" << endl;
+        cout << "4.View List" << endl;
+        cout << "5.Delete First" << endl;
+        cout << "6.Delete Last" << endl;
+        cout << "7.Delete After" << endl;
+        cout << "0.Exit" << endl;
+        cout << "masukkan pilihan : "; cin>>pil;
+        switch(pil)
+        {
+        
+            case 1:
+                P = get_input();
+                insertFirst(L,P);
+                break;
+                
+            case 2:
+                P = get_input();
+                insertLast(L,P);
+                break;
+                
+            case 3:
+                cout<< "Masukkan NIM dicari: "; cin>>dicari.nim;
+                Q = findElm(L,dicari);
+                if(Q!=NULL){
+                    P = get_input();
+                    insertAfter(Q,P);
+                }; break;
+                
+            case 4:
+                printInfo(L); break;
+                
+            case 5:
+                deleteFirst(L,P);
+                dealokasi(P); break;
+                
+            case 6:
+                deleteLast(L,P);
+                dealokasi(P); break;
+                
+            case 7:
+                cin >> dicari.nim;
+                Q = findElm(L,dicari);
+                if(Q!=NULL){
+                    deleteAfter(Q,P);
+                    dealokasi(P);
+                }; break;
+                
+            case 0 :
+                cout << "Terima Kasih" << endl;
+                break;
+            default :
+                cout<<"Input Salah"<<endl;
+                break;
+        }
+    } while (pil!=0);
+}
+
+int main()
+{
+    List L;
+    createList(L);
+    mainmenu(L);
+
+    return 0;
+}
