@@ -1,0 +1,76 @@
+#include "siswa.h"
+
+int main()
+{
+    siswa s1;
+    char answer;
+    int menu;
+    string namasiswa, namapelajaran;
+    double nilai;
+    bool input;
+    do
+    {
+        cout<< "Menu : "<<endl;
+        cout<< "1. Input Nama Siswa"<<endl;
+        cout<< "2. Input Pelajaran"<<endl;
+        cout<< "3. Menampilkan Daftar Pelajaran Siswa"<<endl;
+        cout<< "4. Keluar"<<endl;
+        cin>>menu;
+        switch(menu)
+        {
+        case 1 :
+            cout<<"----Menu 1----"<<endl;
+            cout<<"Masukkan Nama Siswa : "<<endl;
+            cin>>namasiswa;
+            s1 = create_siswa(namasiswa);
+            cout<<endl;
+            break;
+            
+        case 2 :
+            cout<<"----Menu 2----"<<endl;
+            do
+            {
+                if (s1.num_pel==10)
+                {
+                    cout<< "Tidak Dapat Menambah Daftar Pelajaran !!!"<<endl;
+                    cout<<endl;
+                    break;
+                }
+                else
+                {
+                    cout<<"Masukkan Nama Pelajaran : "<<endl;
+                    cin>>namapelajaran;
+                    cout<<"Masukkan Nilai : "<<endl;
+                    cin>>nilai;
+                    input_pelajaran(s1,namapelajaran,nilai);
+                    cout<< "Lagi ? (y/n)"<<endl;
+                    cin>>answer;
+                    if (answer != 'y' && answer != 'n')
+                    {
+                        cout<< "Inputan Salah !!!"<<endl;
+                    }
+                }
+            }
+            while(answer=='y' && s1.num_pel<=10);
+            cout<<endl;
+            break;
+            
+        case 3 :
+            cout<<"----Menu 3----"<<endl;
+            tampil_siswa(s1);
+            cout<<endl;
+            cout<<"Nilai Rata-rata Siswa : "<<rata2_nilai(s1)<<endl;
+            cout<<endl;
+            break;
+            
+        case 4 :
+            cout<<"----Menu 4----"<<endl;
+            cout<<"Terima Kasih"<<endl;
+            break;
+        default :
+            cout<<"Inputan Salah !!!"<<endl;
+        }
+    }
+    while(menu!=4);
+    return 0;
+}
