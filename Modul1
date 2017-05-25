@@ -1,0 +1,35 @@
+#include "siswa.h"
+
+siswa create_siswa(string nama){
+    siswa s;
+    s.nama_siswa = nama;
+    s.num_pel = 0;
+
+    return s;
+}
+bool input_pelajaran(siswa &s, string nama_pelajaran, double nilai){
+    bool ok = true;
+    if (nilai<0 || nilai>100 || s.num_pel>10){
+        ok = false;
+    }
+    else{
+        s.daftar_pelajaran[s.num_pel] = create_pelajaran(nama_pelajaran,nilai);
+        s.num_pel = s.num_pel+1;
+    }
+    return ok;
+}
+double rata2_nilai(siswa s){
+    double rata2 = 0;
+    for (int i=0;i<s.num_pel;i++){
+        rata2 = rata2 + s.daftar_pelajaran[i].nilai;
+    }
+    rata2 = rata2 / s.num_pel;
+    return rata2;
+}
+void tampil_siswa(siswa s){
+    cout<< "Nama : "<<s.nama_siswa;
+    for(int i=0;i<s.num_pel;i++){
+        cout<<endl;
+        tampil_pelajaran(s.daftar_pelajaran[i]);
+    }
+}
