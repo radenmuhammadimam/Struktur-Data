@@ -1,0 +1,16 @@
+#include "pelajaran.h"
+
+pelajaran create_pelajaran(string nama_pelajaran, double nilai)
+{
+    pelajaran pel;
+    pel.nama_pelajaran = nama_pelajaran;
+    pel.nilai = nilai;
+
+    return pel;
+}
+
+void tampil_pelajaran(pelajaran pel)
+{
+    cout<< "Nama Pelajaran   : "<<pel.nama_pelajaran<<endl;
+    cout<< "Nilai Pelajaran  : "<<pel.nilai<<endl;
+}
