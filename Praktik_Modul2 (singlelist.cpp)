@@ -1,0 +1,115 @@
+#include "singlelist.h"
+
+void createList(List &L)
+{
+    first(L) = nil;
+}
+
+address alokasi(infotype x)
+{
+    address P;
+
+    P       = new elmlist;
+    info(P) = x;
+    next(P) = nil;
+
+    return P;
+}
+
+void dealokasi(address &p)
+{
+    delete p;
+}
+
+void insertFirst(List &L, address p)
+{
+    next(p)  = first(L);
+    first(L) = p;
+}
+
+void insertLast(List &L, address p)
+{
+    if(first(L) == nil)
+    {
+        insertFirst(L,p);
+    }
+    else
+    {
+        address q = first(L);
+        while(next(q)!=nil)
+        {
+            q = next(q);
+        }
+        next(q) = p;
+    }
+}
+
+address findElm(List L, infotype x)
+{
+    address P;
+
+    P = first(L);
+    while(P != nil && info(P).nim != x.nim)
+    {
+        P = next(P);
+    }
+
+    return P;
+}
+
+void deleteFirst(List &L, address &p)
+{
+    if(first(L) != nil)
+    {
+        p        = first(L);
+        first(L) = next(p);
+        next(p)  = nil;
+    }
+}
+
+void deleteLast(List &L, address &p)
+{
+    if(first(L) != nil)
+    {
+        p = first(L);
+        if(next(p) == nil)
+        {
+            deleteFirst(L,p);
+        }
+        else
+        {
+            while(next(next(p)) != nil)
+            {
+                p = next(p);
+            }
+            address q = p;
+            p         = next(q);
+            next(q)   = nil;
+        }
+    }
+}
+
+void printInfo(List L)
+{
+    address p = first(L);
+
+    cout << "--DATA LIST--"<<endl;
+    while(p!=nil){
+        cout<<info(p).nim<<" - "<<info(p).nama<<endl;
+        p = next(p);
+    }
+    cout << endl;
+}
+
+void insertAfter(address prec, address p)
+{
+    next(p)    = next(prec);
+    next(prec) = p;
+}
+
+void deleteAfter(address prec, address &p)
+{
+    p          = next(prec);
+    next(prec) = next(p);
+    next(p)    = nil;
+}
