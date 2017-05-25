@@ -1,0 +1,21 @@
+#include "singlelist.h"
+
+int main()
+{
+    List L;
+    address P;
+    infotype x;
+    createList(L);
+
+    x.nim = "001";
+    x.nama = "Budi";
+    P = alokasi(x);
+    cout<<P<<endl;
+    cout<<info(P).nim<<" - "<<info(P).nama<<endl;
+    cout<<next(P)<<endl;
+    cout<<first(L)<<endl;
+    dealokasi(P);
+    cout<<P<<endl;
+
+    return 0;
+}
