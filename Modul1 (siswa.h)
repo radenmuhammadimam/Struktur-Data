@@ -1,0 +1,17 @@
+#ifndef SISWA_H_INCLUDED
+#define SISWA_H_INCLUDED
+#include "pelajaran.h"
+
+struct siswa
+{
+    string nama_siswa;
+    pelajaran daftar_pelajaran[10];
+    int num_pel;
+};
+
+siswa create_siswa(string nama);
+bool input_pelajaran(siswa &s, string nama_pelajaran, double nilai);
+double rata2_nilai(siswa s);
+void tampil_siswa(siswa s);
+
+#endif // SISWA_H_INCLUDED
