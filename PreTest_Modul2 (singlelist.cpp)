@@ -1,0 +1,22 @@
+#include "singlelist.h"
+
+void createList(List &L)
+{
+    first(L) = NULL;
+}
+
+address alokasi(infotype x)
+{
+    address P;
+
+    P = new elmlist;
+    info(P) = x;
+    next(P) = NULL;
+
+    return P;
+}
+
+void dealokasi(address &P)
+{
+    delete P;
+}
