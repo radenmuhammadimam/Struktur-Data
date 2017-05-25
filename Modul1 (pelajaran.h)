@@ -1,0 +1,16 @@
+#ifndef PELAJARAN_H_INCLUDED
+#define PELAJARAN_H_INCLUDED
+#include <iostream>
+
+using namespace std;
+
+struct pelajaran
+{
+    string nama_pelajaran;
+    double nilai;
+};
+
+pelajaran create_pelajaran(string nama_pelajaran, double nilai);
+void tampil_pelajaran(pelajaran pel);
+
+#endif // PELAJARAN_H_INCLUDED
