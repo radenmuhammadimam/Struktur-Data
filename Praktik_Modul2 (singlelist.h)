@@ -1,0 +1,42 @@
+#ifndef SINGLELIST_H_INCLUDED
+#define SINGLELIST_H_INCLUDED
+#include <iostream>
+#define nil NULL
+#define next(P) P->next
+#define info(P) (P)->info
+#define first(L) (L).first
+
+using namespace std;
+
+struct infotype
+{
+    string nim;
+    string nama;
+};
+
+typedef struct elmlist *address;
+
+struct elmlist 
+{
+    infotype info;
+    address next;
+};
+
+struct List
+{
+    address first;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void insertFirst(List &L, address p);
+void insertLast(List &L, address p);
+address findElm(List L, infotype x);
+void deleteFirst(List &L, address &p);
+void deleteLast(List &L, address &p);
+void printInfo(List L);
+void insertAfter(address prec, address p);
+void deleteAfter(address prec, address &p);
+
+#endif // SINGLELIST_H_INCLUDED
