@@ -1,0 +1,164 @@
+#include <iostream>
+#include <conio.h>
+#include "circularlist.h"
+#include "doublelist.h"
+
+using namespace std;
+
+void nomor_satu() 
+{
+    infotype x;
+    address P, Q;
+    List L;
+    createList(L);
+
+    P = NULL;
+    Q = NULL;
+
+  cout<<"--------Nomor 1-----------"<<endl;
+    cout<<"cek delete"<<endl;
+    deleteFirst(L, P);
+
+    deleteLast(L, P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek insert first 10"<<endl;
+    P = alokasi(10);
+    insertFirst(L, P);
+    printInfo(L);
+    cout<<"cek insert first 0"<<endl;
+    P = alokasi(0);
+    insertFirst(L, P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek insert last 30"<<endl;
+    P = alokasi(30);
+    insertLast(L, P);
+    printInfo(L);
+    cout<<"cek insert last 40"<<endl;
+    P = alokasi(40);
+    insertLast(L, P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek delete first"<<endl;
+    deleteFirst(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"cek delete first"<<endl;
+    deleteFirst(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek delete last"<<endl;
+    deleteLast(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"cek delete last"<<endl;
+    deleteLast(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+    cout<<endl;
+}
+
+void nomor_dua() 
+{
+    infotype x;
+    address_c P, Q;
+    List_c L;
+    createList(L);
+
+    P = NULL;
+    Q = NULL;
+
+    cout<<"\n-----------Nomor 2-----------"<<endl;
+    cout<<"cek delete"<<endl;
+    deleteFirst(L, P);
+
+    deleteLast(L, P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek insert first 10"<<endl;
+    P = alokasi_c(10);
+    insertFirst(L, P);
+    printInfo(L);
+    cout<<"cek insert first 0"<<endl;
+    P = alokasi_c(0);
+    insertFirst(L, P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek insert last 30"<<endl;
+    P = alokasi_c(30);
+    insertLast(L, P);
+    printInfo(L);
+    cout<<"cek insert last 40"<<endl;
+    P = alokasi_c(40);
+    insertLast(L, P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+    
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek delete first"<<endl;
+    deleteFirst(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"cek delete first"<<endl;
+    deleteFirst(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+
+    cout<<"\n-------------------------------"<<endl;
+    cout<<"cek delete last"<<endl;
+    deleteLast(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"cek delete last"<<endl;
+    deleteLast(L, P);
+    cout<<info(P)<<" telah diremove"<<endl;
+    dealokasi(P);
+    printInfo(L);
+    cout<<"[tekan enter]";
+    getche();
+    cout<<endl;
+}
+
+int main() 
+{
+    nomor_satu();
+    char pil;
+    cout<<"lanjutkan ke nomor dua? (y/n)";
+    cin>>pil;
+    if(pil=='y') 
+    {
+        nomor_dua();
+    }
+    return 0;
+}
