@@ -1,0 +1,9 @@
+#ifndef INFOTYPE_H_INCLUDED
+#define INFOTYPE_H_INCLUDED
+#include <iostream>
+
+using namespace std;
+
+typedef int infotype;
+
+#endif // INFOTYPE_H_INCLUDED
