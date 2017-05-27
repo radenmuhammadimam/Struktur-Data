@@ -1,0 +1,38 @@
+#ifndef CIRCULARLIST_H_INCLUDED
+#define CIRCULARLIST_H_INCLUDED
+#include "infotype.h"
+#define first(L) L.first
+#define next(P) P->next
+#define info(P) P->info
+
+typedef struct elmlist_c *address_c;
+
+struct elmlist_c 
+{
+    infotype info;
+    address_c next;
+};
+
+struct List_c 
+{
+    address_c first;
+};
+
+
+void createList(List_c &L);
+address_c alokasi_c(infotype x);
+void dealokasi(address_c &P);
+
+void insertFirst(List_c &L, address_c P);
+void insertAfter(List_c &L, address_c Prec, address_c P);
+void insertLast(List_c &L, address_c P);
+
+void deleteFirst(List_c &L, address_c &P);
+void deleteLast(List_c &L, address_c &P);
+void deleteAfter(List_c &L, address_c Prec, address_c &P);
+
+address_c findElm(List_c L, infotype x);
+void printInfo(List_c L);
+
+
+#endif // CIRCULARLIST_H_INCLUDED
