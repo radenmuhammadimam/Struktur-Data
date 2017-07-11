@@ -3,7 +3,7 @@
 
 #include "circular.h"
 
-void printLoop(address Start);
+void printLoop(address Start);----
 void balikList(List L, List &L_hasil);
 float hitungRataRata(List L);
 
