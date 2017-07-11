@@ -1,0 +1,39 @@
+#include "asesmen_2.h"
+
+void printLoop(address Start)
+{
+    address p = Start;
+    do
+    {
+        cout<<" "<<p->info<<",";
+        p = p->next;
+    }while (p!=Start);
+}
+
+void balikList(List L, List &L_hasil)
+{
+    address P;
+    while(L.first != NULL)
+    {
+        deleteFirst(L,P);
+        insertFirst(L_hasil,P);
+    };
+}
+
+float hitungRataRata(List L)
+{
+    address P = L.first;
+    int i = 0;
+    float rata2 = 0;
+    if (P != NULL)
+    {
+        do
+        {
+            rata2+=P->info;
+            i++;
+            P = P->next;
+        } while (P != L.first);
+    }
+    rata2 = rata2/i;
+    return rata2;
+}
