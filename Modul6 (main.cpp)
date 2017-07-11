@@ -1,0 +1,114 @@
+#include <iostream>
+#include "stack.h"
+#include "queue.h"
+using namespace std;
+
+void infixToPostfix(Stack S, Stack &output) 
+{
+    /**
+    * IS : Stack S mungkin kosong, Stack output mungkin berisi
+    * FS : stack output berisi bentuk postfix
+    */
+    
+    Stack opr;
+    createStack(opr);
+    createStack(output);
+    infotype tmp;
+    while (S.top != -1){
+        tmp = pop(S);
+        if ((tmp == '*') || (tmp == '/')){
+            if ((opr.info[opr.top] == '*') || (opr.info[opr.top] == '*')){
+                push(output, pop(opr));
+            }
+            push(opr, tmp);
+        }
+        else if ((tmp == '+') || (tmp == '-')){
+            while (opr.top != -1){
+                push(output,pop(opr));
+            }
+            push(opr, tmp);
+        }
+        else {
+            push(output, tmp);
+        }
+    }
+    while (opr.top != -1){
+        push(output, pop(opr));
+    }
+    reverseStack(output);
+    //-----------------------------------------
+
+}
+
+void pretest() 
+{
+    Stack S, output;
+    createStack(S);
+    push(S,'S');
+    push(S,'T');
+    push(S,'R');
+    pop(S);
+    push(S,'D');
+    push(S,'I');
+    push(S,'A');
+    pop(S);
+    push(S,'F');
+    printInfo(S);
+    cout<<"reverse stack"<<endl;
+    reverseStack(S);
+    printInfo(S);
+}
+
+void Question1() 
+{
+    Stack S, output;
+    createStack(S);
+    push(S, '3');
+    push(S, '+');
+    push(S, '5');
+    push(S, '/');
+    push(S, '7');
+    push(S, '-');
+    push(S, '9');
+    push(S, '*');
+    push(S, '1');
+    cout<<"infix input: "<<endl;
+    printInfo(S);
+    cout<<"infix-to-postfix:"<<endl;
+    infixToPostfix(S, output);
+    printInfo(output);
+}
+
+void Question2()
+{
+    Queue Q;
+    createQueue(Q);
+    cout<<"---------------------------------------------"<<endl;
+    cout<<" \t | Head-Tail\t | Circular Ver. | Straight Ver. "<<endl;
+    cout<<"---------------------------------------------"<<endl;
+    cout<<" Start \t | "; printInfo(Q);
+    enqueue(Q,5); cout<<" enq 5 \t | "; printInfo(Q);
+    enqueue(Q,2); cout<<" enq 2 \t | "; printInfo(Q);
+    enqueue(Q,7); cout<<" enq 7 \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    enqueue(Q,4); cout<<" enq 4 \t | "; printInfo(Q);
+    enqueue(Q,2); cout<<" enq 2 \t | "; printInfo(Q);
+    enqueue(Q,8); cout<<" enq 8 \t | "; printInfo(Q);
+    enqueue(Q,9); cout<<" enq 9 \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    dequeue(Q);   cout<<" deq \t | "; printInfo(Q);
+    enqueue(Q,2); cout<<" enq 2 \t | "; printInfo(Q);
+
+}
+
+int main() 
+{
+    pretest();
+    Question1();
+    Question2();
+    return 0;
+}
