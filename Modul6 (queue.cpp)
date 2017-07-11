@@ -1,0 +1,133 @@
+#include "queue.h"
+
+void createQueue(Queue &Q) {
+    /**
+    * FS : seluruh isi Queue = 0, head(Q) dan tail(Q) = -1
+    */
+    fill_n(Q.info, 5, 0);
+    Q.head = -1;
+    Q.tail = -1;
+}
+
+bool isEmpty(Queue Q) {
+    /**
+    * FS : mengembalikan true jika queue kosong
+    */
+    return Q.head == -1;
+}
+
+bool isFull(Queue Q) {
+    /**
+    * FS : mengembalikan true jika queue sudah penuh
+    */
+    if(Q.head==0) {
+        return Q.tail==4;
+    } else {
+        return Q.tail+1 == Q.head;
+    }
+}
+
+void enqueue(Queue &Q, infotype_q x ) {
+    /**
+    * IS : Queue mungkin kosong, mungkin penuh
+    * FS : memasukkan x ke dalam Q dengan algoritma Alternatif III
+    */
+    //-------------your code here--------------
+    if (isFull(Q)){
+        cout << "Queue Penuh" << endl;
+    }
+    else{
+        if (Q.head==-1){
+            Q.head ++;
+        }
+        if (Q.tail == 4){
+            Q.tail = 0;
+        }
+        else{
+            Q.tail ++;
+        }
+        Q.info[Q.tail] = x;
+    }
+
+    //-----------------------------------------
+}
+
+infotype_q dequeue(Queue &Q) {
+    /**
+    * IS : Queue mungkin kosong
+    * FS : mengeluarkan elemen pertama dari dalam Q dengan
+            algoritma Alternatif III
+    */
+    infotype_q x = NULL;
+    //-------------your code here--------------
+    if (isEmpty(Q)){
+        x=-1;
+    }
+    else{
+        x = Q.info[Q.head];
+        if (Q.head==Q.tail){
+            Q.head=-1;
+            Q.tail=-1;
+        }
+        else{
+            if (Q.head == 4){
+                Q.head = 0;
+            }
+            else{
+                Q.head++;
+            }
+        }
+    }
+    //-----------------------------------------
+    return x;
+}
+
+void printInfo(Queue Q) {
+    /**
+    * IS : Stack mungkin kosong
+    * FS : menampilkan seluruh info di dalam Queue dengan bentuk:
+    *      isi Queue | head - tail
+    */
+    
+    if(!isEmpty(Q)) 
+    {
+        cout<<" "<<head(Q)<<" - "<<tail(Q)<<" \t | ";
+        for(int i = 0; i<5; i++) 
+        {
+            if(Q.head<=Q.tail) 
+            {
+                if(i<Q.head||i>Q.tail) 
+                {
+                    cout<<"- ";
+
+                } 
+                else 
+                {
+                    cout<<Q.info[i]<<" ";
+                }
+            } 
+            else if(i<Q.head&&i>Q.tail) 
+            {
+                cout<<"- ";
+            } 
+            else 
+            {
+                cout<<Q.info[i]<<" ";
+            }
+        }
+        cout<<" | ";
+
+        int i = head(Q);
+        do{
+            if(i == 5)i = 0;
+            cout<<Q.info[i]<<" ";
+            i++;
+        } while(i != tail(Q)+1);
+
+    } 
+    else 
+    {
+        cout<<" "<<head(Q)<<" - "<<tail(Q)<<" \t | empty queue| empty queue ";
+    }
+    cout<<endl;
+}
