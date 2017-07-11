@@ -1,0 +1,106 @@
+#include "asesmen_2.h"
+
+void no_1() {
+    cout<<endl<<"==========NOMOR 1=========="<<endl;
+    List L;
+    address P, Prec;
+    createList(L);
+    insertFirst(L, alokasi(5));
+    insertLast(L, alokasi(50));
+    printInfo(L);                               // output 5, 50,
+
+    Prec = findElm(L, 50);
+    insertAfter(L, Prec, alokasi(100));
+    printInfo(L);                               // output 5, 50, 100,
+
+    insertAfter(L, first(L), alokasi(25));
+    printInfo(L);                               // output 5, 25, 50, 100,
+
+    Prec = findElm(L, 50);
+    insertAfter(L, Prec, alokasi(75));
+    printInfo(L);                               // output 5, 25, 50, 75, 100,
+
+    insertFirst(L, alokasi(0));
+    printInfo(L);                               // output 0, 5, 25, 50, 75, 100,
+
+    Prec = findElm(L, 75);
+    deleteAfter(L, Prec, P);
+    dealokasi(P);
+    printInfo(L);                               // output 0, 5, 25, 50, 75,
+
+    Prec = findElm(L, 75);
+    deleteAfter(L,Prec,P);
+    dealokasi(P);
+    printInfo(L);                               // output 5, 25, 50, 75,
+
+    deleteAfter(L, first(L), P);
+    dealokasi(P);
+    printInfo(L);                               // output 5, 50, 75,
+
+    deleteFirst(L,P);
+    dealokasi(P);
+    printInfo(L);                               // output 50, 75,
+
+    deleteFirst(L,P);
+    deleteFirst(L,P);
+    dealokasi(P);
+    printInfo(L);                               // output List Kosong
+}
+
+void no_2() {
+    cout<<endl<<"==========NOMOR 2=========="<<endl;
+    List L;
+    address P;
+    createList(L);
+    insertLast(L, alokasi(0));
+    insertLast(L, alokasi(5));
+    insertLast(L, alokasi(15));
+    insertLast(L, alokasi(25));
+    insertLast(L, alokasi(35));
+    insertLast(L, alokasi(45));
+    printInfo(L);                       // output 0, 5, 15, 25, 35, 45,
+    P = findElm(L, 25);
+    printLoop(P);                       // output 25, 35, 45, 0, 5, 15,
+}
+
+void no_3() {
+    cout<<endl<<"==========NOMOR 3=========="<<endl;
+    List L, L2;
+    createList(L);
+    insertLast(L, alokasi(0));
+    insertLast(L, alokasi(5));
+    insertLast(L, alokasi(15));
+    insertLast(L, alokasi(25));
+    insertLast(L, alokasi(35));
+    insertLast(L, alokasi(45));
+    printInfo(L);                       // output 0, 5, 15, 25, 35, 45,
+
+    createList(L2);
+    balikList(L, L2);
+    printInfo(L2);                      // output 45, 35, 25, 15, 5, 0,
+}
+
+void no_4() {
+    cout<<endl<<"==========NOMOR 4=========="<<endl;
+    List L, L2;
+    createList(L);
+    insertLast(L, alokasi(0));
+    insertLast(L, alokasi(5));
+    insertLast(L, alokasi(15));
+    insertLast(L, alokasi(25));
+    insertLast(L, alokasi(35));
+    insertLast(L, alokasi(45));
+    printInfo(L);                       // output 0, 5, 15, 25, 35, 45,
+    float x = hitungRataRata(L);
+    cout<<"Rata-rata = "<<x<<endl;
+}
+
+
+int main() {
+
+    no_1();
+    no_2();
+    no_3();
+    no_4();
+    return 0;
+}
