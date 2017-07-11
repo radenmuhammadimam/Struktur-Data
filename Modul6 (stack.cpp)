@@ -1,0 +1,77 @@
+#include "stack.h"
+void createStack(Stack &S) 
+{
+    /**
+    * FS : seluruh isi Stack = 0, top(S) = -1
+    */
+    
+    fill_n(S.info, 30, 0);
+    S.top = -1;
+}
+
+void push(Stack &S, infotype x ) 
+{
+    /**
+    * IS : Stack mungkin kosong, mungkin penuh
+    * FS : x dimasukkan ke dalam stack dan menjadi top(S)
+    */
+    
+    if (S.top<29)
+    {
+        S.top++;
+        S.info[S.top] = x;
+    }
+    else 
+    {
+        cout << "Stack Penuh";
+    }
+}
+
+infotype pop(Stack &S) 
+{
+    /**
+    * IS : Stack mungkin kosong
+    * FS : mengeluarkan elemen top(S), top(S) mundur
+    */
+    
+    if (S.top == -1)
+    {
+        return -1;
+    }
+    else
+    {
+        infotype a = S.info[S.top];
+        S.top--;
+        return a;
+    }
+}
+
+void printInfo(Stack S) 
+{
+    /**
+    * IS : Stack mungkin kosong
+    * FS : menampilkan seluruh info di dalam Stack
+    */
+
+    cout<<"[TOP] ";
+    for(int i=S.top; i>-1; i--) {
+        cout<<S.info[i]<<" ";
+    }
+    cout<<endl;
+}
+
+
+void reverseStack(Stack &S) {
+    /**
+    * IS : Stack mungkin kosong
+    * FS : membalik seluruh isi elemen di dalam Stack S
+    */
+    
+    Stack S2;
+    createStack(S2);
+    int a = S.top;
+    for (int i = 0; i<=a; i++){
+        push(S2,pop(S));
+    }
+    S = S2;
+}
