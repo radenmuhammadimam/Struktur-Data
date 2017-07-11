@@ -1,0 +1,47 @@
+#ifndef CIRCULAR_H_INCLUDED
+#define CIRCULAR_H_INCLUDED
+
+#include <iostream>
+
+#define first(L) L.first
+#define next(P) P->next
+#define info(P) P->info
+
+using namespace std;
+
+typedef int infotype;
+typedef struct elmlist *address;
+
+/**
+* IMPLEMENT CIRCULAR SINGLE LINKED LIST
+*/
+
+struct elmlist 
+{
+    infotype info;
+    address next;
+};
+
+struct List 
+{
+    address first;
+};
+
+void createList(List &);
+
+address alokasi(infotype );
+void dealokasi(address &);
+
+void insertFirst(List &, address );
+void insertLast(List &, address );
+void insertAfter(List &, address &, address);
+
+void deleteFirst(List &, address &);
+void deleteLast(List &, address &);
+void deleteAfter(List &, address &, address &);
+
+address findElm(List, infotype );
+void printInfo(List L);
+
+
+#endif // CIRCULAR_H_INCLUDED
