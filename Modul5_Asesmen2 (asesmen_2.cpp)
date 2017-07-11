@@ -2,7 +2,7 @@
 
 void printLoop(address Start)
 {
-    address p=Start;
+    address p = Start;
     do
     {
         cout<<" "<<p->info<<",";
