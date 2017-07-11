@@ -1,0 +1,236 @@
+#include "circular.h"
+
+void createList(List &L) 
+{
+    /**
+    * FS : first(L) diset Nil
+    */
+
+    first(L) = NULL;
+}
+
+address alokasi(infotype x) 
+{
+    /**
+    * FS : mengembalikan elemen list baru dengan info = x,
+    *      next elemen = Nil
+    */
+
+    address P = NULL;
+    P = new elmlist;
+    info(P) = x;
+    next(P) = NULL;
+    return P;
+}
+
+void dealokasi(address &P) 
+{
+    /**
+    * FS : menghapus elemen yang ditunjuk oleh P (delete)
+    */
+    
+    delete P;
+    P = NULL;
+}
+
+void insertLast(List &L, address P) 
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : elemen yang ditunjuk P menjadi elemen terakhir pada List L
+    */
+    
+    if(first(L) == NULL) 
+    {
+        insertFirst(L, P);
+    } 
+    else 
+    {
+        address Q = first(L);
+        while(next(Q) != first(L))
+        {
+            Q = next(Q);
+        };
+        next(P) = first(L);
+        next(Q) = P;
+    }
+}
+
+address findElm(List L, infotype x) 
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : mengembalikan elemen dengan info = x,
+           mengembalikan Nil jika tidak ditemukan
+    */
+
+    address P = first(L);
+    do 
+    {
+        if(info(P) == x) 
+        {
+            return P;
+        }
+        P = next(P);
+    } while(P != first(L));
+    return NULL;
+}
+
+void deleteLast(List &L, address &P) 
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : elemen tarakhir di dalam List L dilepas dan disimpan/ditunjuk oleh P
+    */
+    
+    if(next(first(L)) == first(L)) 
+    {
+        deleteFirst(L,P);
+    } 
+    else 
+    {
+        address Q = first(L);
+        while(next(next(Q)) != first(L)){
+            Q = next(Q);
+        }
+        P = next(Q);
+        next(P) = NULL;
+        next(Q) = first(L);
+    }
+}
+
+void printInfo(List L) 
+{
+    /**
+    * FS : menampilkan info seluruh elemen list L
+    */
+    
+    address P = first(L);
+    if(P == NULL)
+    {
+        cout<<" List Kosong"<<endl;
+    } 
+    else
+    {
+        cout<<"  ";
+        do 
+        {
+            cout<<info(P)<<", ";
+            P = next(P);
+        } while(P != first(L));
+        cout<<endl;
+    }
+}
+
+void insertFirst(List &L, address P) 
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : elemen yang ditunjuk P menjadi elemen pertama pada List L
+    */
+    address Q;
+    
+    //---------------------------------------------------------------------
+    // cek kondisi jika list masih kosong
+    //      insert elemen pertama kali
+    // jika tidak
+    //      buat mekanisme agar Q menunjuk elemen terakhir
+    //      insert elemen baru menjadi elemen pertama list
+    //      dengan next elemen terakhir menunjuk kembali ke elemen pertama
+    //      dan first list pindah ke elemen baru
+    //
+    //---------------------------------------------------------------------
+
+    if (L.first == NULL)
+    {
+        L.first = P;
+        L.first->next = P;
+    }
+    else
+    {
+        Q = L.first->next;
+        while (Q->next != L.first)
+            Q = Q->next;
+        Q->next = P;
+        P->next = L.first;
+        L.first = P;
+    }
+}
+
+void deleteFirst(List &L, address &P) {
+    /**
+    * IS : List L mungkin kosong
+    * FS : elemen pertama di dalam List L dilepas dan disimpan/ditunjuk oleh P
+    */
+    address Q;
+    
+    //---------------------------------------------------------------------
+    // cek kondisi jika elemen tinggal satu di dalam list
+    //      hapus elemen terakhir
+    // jika tidak
+    //      buat mekanisme agar Q menunjuk elemen terakhir
+    //      pindahkan first list lalu hapus elemen pertama list
+    //      dengan next elemen terakhir menunjuk kembali ke elemen pertama
+    //
+    //---------------------------------------------------------------------
+    
+    P = L.first;
+    if (L.first == NULL)
+    {
+        cout<<"Elemen Kosong"<<endl;
+    }
+    else if (L.first->next == L.first)
+    {
+        L.first = NULL;
+    }
+    else
+    {
+        Q = L.first->next;
+        while (Q->next != L.first)
+            Q = Q->next;
+        Q->next = L.first->next;
+        L.first = L.first->next;
+    }
+    P->next = NULL;
+}
+
+void insertAfter(List &L, address &Prec, address P) 
+{
+    /**
+    * IS : Prec dan P tidak NULL
+    * FS : elemen yang ditunjuk P menjadi elemen di belakang elemen yang
+    *      ditunjuk pointer Prec
+    */
+    
+    P->next = Prec->next;
+    Prec->next = P;
+}
+
+void deleteAfter(List &L, address &Prec, address &P) 
+{
+    /**
+    * IS : Prec tidak NULL
+    * FS : elemen yang berada di belakang elemen Prec dilepas
+    *      dan disimpan/ditunjuk oleh P
+    */
+    
+    //-----------------------------------------------------
+    // cek kondisi elemen yang akan dihapus adalah first
+    //      panggil prosedur delete first
+    // jika tidak
+    //      algoritma delete after
+    //
+    //-----------------------------------------------------
+    
+    if(Prec->next == L.first)
+    {
+        deleteFirst(L,P);
+        Prec = NULL;
+    }
+    else
+    {
+        P = Prec->next;
+        Prec->next = P->next;
+        P->next = NULL;
+    }
+}
