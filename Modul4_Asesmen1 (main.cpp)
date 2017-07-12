@@ -1,0 +1,79 @@
+#include "asesmen_1.h"
+
+void no_2() 
+{
+    cout<<endl<<"==========NOMOR 2=========="<<endl;
+    List L;
+    address P;
+    createList(L);
+    insertFirst(L, alokasi(5));
+    insertFirst(L, alokasi(-2));
+    insertFirst(L, alokasi(7));
+    insertFirst(L, alokasi(2));
+    insertFirst(L, alokasi(3));
+    insertFirst(L, alokasi(7));
+    printInfo(L);
+
+    P = findMax(L);
+    cout<<"max = "<<info(P)<<endl;
+}
+
+void no_3() 
+{
+    cout<<endl<<"==========NOMOR 3=========="<<endl;
+    List L, L1, L2;
+    createList(L);
+    insertFirst(L, alokasi(5));
+    insertFirst(L, alokasi(2));
+    insertFirst(L, alokasi(7));
+    insertFirst(L, alokasi(2));
+    insertFirst(L, alokasi(3));
+    insertFirst(L, alokasi(8));
+    insertFirst(L, alokasi(6));
+    insertFirst(L, alokasi(9));
+    insertFirst(L, alokasi(1));
+    cout<<"List L"<<endl;
+    printInfo(L);
+
+    pecahGanjilGenap(L, L1, L2);
+    cout<<endl<<"List Ganjil"<<endl;
+    printInfo(L1);
+    cout<<endl<<"List Genap"<<endl;
+    printInfo(L2);
+}
+
+void no_4() 
+{
+    cout<<endl<<"==========NOMOR 4=========="<<endl;
+    List L, L1, L2;
+    createList(L1);
+    insertFirst(L1, alokasi(1));
+    insertFirst(L1, alokasi(2));
+    insertFirst(L1, alokasi(7));
+    insertFirst(L1, alokasi(12));
+    insertFirst(L1, alokasi(13));
+    insertFirst(L1, alokasi(18));
+    cout<<"List A"<<endl;
+    printInfo(L1);
+
+    createList(L2);
+    insertFirst(L2, alokasi(3));
+    insertFirst(L2, alokasi(6));
+    insertFirst(L2, alokasi(7));
+    insertFirst(L2, alokasi(9));
+    insertFirst(L2, alokasi(22));
+    cout<<endl<<"List B"<<endl;
+    printInfo(L2);
+
+    gabungListAscending(L1, L2, L);
+    cout<<endl<<"List Gabungan"<<endl;
+    printInfo(L);
+}
+
+int main() 
+{
+    no_2();
+    no_3();
+    no_4();
+    return 0;
+}
