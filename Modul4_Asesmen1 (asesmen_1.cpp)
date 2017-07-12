@@ -1,0 +1,120 @@
+#include "asesmen_1.h"
+
+address findMax( List L)
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : mengembalikan elemen dengan info terbesar dari list L
+    *      mengembalikan null jika list L kosong
+    */
+    
+    address max = NULL;
+    address P = NULL;
+    if (first(L) == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        P = first(L);
+        max = first(L);
+        while(P != NULL)
+        {
+            if(info(P)>info(max))
+            {
+                max = P;
+            }
+            P = next(P);
+        }
+    }
+    return max;
+}
+
+void pecahGanjilGenap( List &L, List &L_ganjil, List &L_genap )
+{
+    /**
+    * IS : List L mungkin kosong
+    * PS : membangi isi list L,
+    *      delete elemen dari list L, elemen ganjil insert ke L_ganjil
+    *      dan elemen genap insert ke L_genap
+    * FS : List L kosong, L_genap berisi elemen genap,
+    *      L_ganjil berisi elemen ganjil
+    *
+    * HINT : penggunaan modulus = 3 mod 2 ---> 3%2
+    */
+    
+    address P;
+    createList(L_ganjil);
+    createList(L_genap);
+    if(first(L) == NULL)
+    {
+        cout<<"List Kosong"<<endl;
+    }
+    else
+    {
+        while(first(L) != NULL)
+        {
+            deleteFirst(L,P);
+            address Q = alokasi(info(P));
+            if(info(P) % 2 == 1)
+            {
+                insertFirst(L_ganjil,Q);
+            }
+            else
+            {
+                insertFirst(L_genap,Q);
+            }
+            dealokasi(P);
+        }
+    }
+}
+
+void gabungListAscending( List &LA, List &LB, List &L_hasil )
+{
+    /**
+    * IS : List LA dan LB mungkin kosong, terurut descending
+    * PR : menggabung list LA dan LB ke dalam L_hasil
+    * FS : List L_hasil berisi elemen dari LA dan LB yang terurut ascending
+    */
+    
+    address P, Q;
+    createList(L_hasil);
+    if(first(LA) == NULL || first(LB) == NULL)
+    {
+        cout<<"List Kosong"<<endl;
+    }
+    else
+    {
+        while(first(LA) != NULL || first(LB) != NULL)
+        {
+            if(first(LA) == NULL)
+            {
+                deleteFirst(LB,P);
+                Q=alokasi(info(P));
+                insertFirst(L_hasil,Q);
+            }
+            else if(first(LB)==NULL)
+            {
+                deleteFirst(LA,P);
+                Q = alokasi(info(P));
+                insertFirst(L_hasil,Q);
+            }
+            else
+            {
+                if(info(first(LA))>info(first(LB)))
+                {
+                    deleteFirst(LA,P);
+                    Q = alokasi(info(P));
+                    insertFirst(L_hasil,Q);
+                }
+                else
+                {
+                    deleteFirst(LB,P);
+                    Q = alokasi(info(P));
+                    insertFirst(L_hasil,Q);
+                }
+            }
+            dealokasi(P);
+        }
+    }
+}
