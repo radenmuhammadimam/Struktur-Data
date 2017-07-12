@@ -1,0 +1,93 @@
+#include "singlelist.h"
+
+void createList(List &L)
+{
+    /**
+    * FS : first(L) diset Nil
+    */
+    
+    first(L) = NULL;
+}
+
+address alokasi(infotype x)
+{
+    /**
+    * FS : mengembalikan elemen list baru dengan info = x, next elemen = Nil
+    */
+
+    address P;
+    P = new elmlist;
+    info(P) = x;
+    next(P) = NULL;
+    return P;
+}
+
+void dealokasi(address &P)
+{
+    /**
+    * FS : menghapus elemen yang ditunjuk oleh P
+    */
+    
+    delete P;
+    P = NULL;
+}
+
+void insertFirst(List &L, address P)
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : elemen yang ditunjuk P menjadi elemen pertama pada List L
+    */
+    
+    if (first(L) == NULL) //Kondisi List Kosong
+    {
+        first(L) = P;
+    }
+    else //Kondisi List ada isi
+    {
+       next(P) = first(L);
+       first(L) = P;
+    }
+}
+
+void deleteFirst(List &L, address &P)
+{
+    /**
+    * IS : List L mungkin kosong
+    * FS : elemen pertama di dalam List L dilepas dan disimpan/ditunjuk oleh P
+    */
+    
+    if(first(L) == NULL) //Kondisi List Kosong
+    {
+        cout<<"LIST KOSONG"<<endl;
+    }
+    else
+    {
+        P = first(L);
+        if(next(first(L)) == NULL) //Kondisi List hanya ada 1 isi
+        {
+            first(L) = NULL;
+        }
+        else //Kondisi List ada banyak isi
+        {
+            first(L)=next(first(L));
+        }
+    }
+}
+
+
+void printInfo(List L)
+{
+    /**
+    * FS : menampilkan info seluruh elemen list L
+    */
+    
+    cout<<"  ";
+    address P = first(L);
+    while(P != NULL)
+    {
+        cout<<info(P)<<", ";
+        P = next(P);
+    }
+    cout<<endl;
+}
