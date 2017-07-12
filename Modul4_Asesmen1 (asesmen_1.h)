@@ -1,0 +1,10 @@
+#ifndef ASESMEN_1_H_INCLUDED
+#define ASESMEN_1_H_INCLUDED
+
+#include "singlelist.h"
+
+address findMax( List L);
+void pecahGanjilGenap( List &L, List &L_ganjil, List &L_genap );
+void gabungListAscending( List &LA, List &LB, List &L_hasil );
+
+#endif // ASESMEN_1_H_INCLUDED
